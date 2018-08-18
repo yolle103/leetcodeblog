@@ -5,6 +5,24 @@
 using namespace std;
 class Solution {
 public:
+    
+    int maxDistToClosest2(vector<int>& seats) {
+        int len = seats.size();
+        int prev = -1, future = 0;
+        int maxdis = -1;
+        for(int i=0; i<len; i++){
+            if(seats[i] == 1)
+                prev = i;
+            else
+                while(future<i || (future<len && seats[future] == 0))
+                    future += 1;
+            int left, right;
+            left = prev == -1? len : i-prev;
+            right = future == 0? len : future-i;
+            maxdis = max(maxdis, min(left, right));
+        }
+        return maxdis;
+    }
     int maxDistToClosest(vector<int>& seats) {
         int len = seats.size();
         int left[len], right[len];
@@ -43,6 +61,6 @@ public:
 };
 int main(){
     vector<int> vec = {1,0,0,0};
-    cout<<Solution().maxDistToClosest(vec)<<endl;
+    cout<<Solution().maxDistToClosest2(vec)<<endl;
 }
 
