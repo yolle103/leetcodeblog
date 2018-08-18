@@ -18,7 +18,7 @@ public:
                 if(do10 > 0)
                     do10 -= 1;
                 else
-                    do5 -=2;
+                    do5 -= 3;
             }
             if(do5<0)
                 return false;
@@ -27,7 +27,7 @@ public:
     }
 };
 int main(){
-    vector<int> ve = {5,5,10,10,20};
+    vector<int> ve = {5,5,5,5,20,20,5,5,20,5};
     cout<<Solution().lemonadeChange(ve)<<endl;
 
 }
