@@ -18,7 +18,7 @@ public:
                     future += 1;
             int left, right;
             left = prev == -1? len : i-prev;
-            right = future == 0? len : future-i;
+            right = future == len? len : future-i;
             maxdis = max(maxdis, min(left, right));
         }
         return maxdis;
