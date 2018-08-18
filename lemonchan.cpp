@@ -10,13 +10,20 @@ public:
         int do20 = 0;
         int len = bills.size();
         for(int i=0; i<len; i++){
-            if(bills[i] == 5)
+            if(bills[i] == 5){
                 do5 += 1;
-            if(bills[i] == 10)
+            }
+
+            if(bills[i] == 10){
                 do5 -= 1;
+                do10 += 1;
+            }
+
             if(bills[i] == 20){
-                if(do10 > 0)
+                if(do10 > 0){
                     do10 -= 1;
+                    do5 -= 1;
+                }
                 else
                     do5 -= 3;
             }
@@ -27,7 +34,7 @@ public:
     }
 };
 int main(){
-    vector<int> ve = {5,5,5,5,20,20,5,5,20,5};
+    vector<int> ve = {5,5,5,10,20};
     cout<<Solution().lemonadeChange(ve)<<endl;
 
 }
