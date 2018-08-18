@@ -9,27 +9,14 @@ public:
     vector<vector<int>> largeGroupPositions(string S) {
         int len = S.size();
         vector<vector<int>> group;
-        char cur = S[0];
-        int groupcount = 1;
-        int start=0, end=-1;
-        for(int i=1; i< len; i++){
-            if(S[i] == cur){
-                groupcount += 1;
-                end = i;
-            }
-            else{
-                if(groupcount >= 3){
-                    vector<int> temp = {start, end};
-                    group.push_back(temp);
+        int start=0;
+        for(int i=0; i< len; i++){
+            if(i == len-1 || S[i] != S[i+1]){
+                if(i-start+1 >= 3){
+                    group.push_back({start, i});
                 }
-                groupcount = 1;
-                start = i;
+                start = i+1;
             }
-            cur = S[i];
-        }
-        if(groupcount >= 3){
-            vector<int> temp = {start, end};
-            group.push_back(temp);
         }
         for(int i=0; i<group.size(); i++){
             for(int j=0; j<group[i].size(); j++)
@@ -41,6 +28,6 @@ public:
     }
 };
 int main(){
-    string s = "abcdddeeeeaabbbcd";
+    string s = "abcdddeeeeaabbb";
     vector<vector<int>> result = Solution().largeGroupPositions(s);
 }
