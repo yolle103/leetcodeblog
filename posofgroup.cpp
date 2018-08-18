@@ -27,6 +27,10 @@ public:
             }
             cur = S[i];
         }
+        if(groupcount >= 3){
+            vector<int> temp = {start, end};
+            group.push_back(temp);
+        }
         for(int i=0; i<group.size(); i++){
             for(int j=0; j<group[i].size(); j++)
                 cout<<group[i][j]<<"   ";
