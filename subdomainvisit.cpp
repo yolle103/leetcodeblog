@@ -14,7 +14,7 @@ public:
             istringstream iss(s);
             unordered_map<string, int>::iterator it;
             vector<string> a((istream_iterator<string>(iss)), istream_iterator<string>());
-            if((it = hash_table.find(a[1]) != hash_table.end()))
+            if((it = hash_table.find(a[1])) != hash_table.end())
                 hash_table[a[1]] += stoi(a[0]);
             else
                 hash_table[a[1]] = stoi(a[0]);
