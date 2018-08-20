@@ -39,13 +39,17 @@ public:
                     hash_table[sub_domain] = stoi(a[0]);
             }
         }
-        for(auto k : hash_table)
-            cout<<k.first<<"  "<<k.second<<endl;
+        vector<string> result;
+        for(auto k : hash_table){
+            result.push_back(to_string(k.second)+" "+k.first);
+        }
+        return result;
             
-        return vector<string>();
     }
 };
 int main(){
     vector<string> cpdomains = {"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
-    Solution().subdomainVisits(cpdomains);
+    auto re = Solution().subdomainVisits(cpdomains);
+    for(auto r: re)
+        cout<<r<<endl;
 }
