@@ -13,7 +13,7 @@ public:
         for(auto s: words){
             int len = s.size();
             bool flag=true;
-            for(int i=1;i<len-1;i++){
+            for(int i=1;i<len;i++){
                 string prefix = s.substr(0,i);
                 if(find(words.begin(), words.end(), prefix) != words.end())
                    continue; 
