@@ -18,6 +18,8 @@ public:
                 hash_table[a[1]] += stoi(a[0]);
             else
                 hash_table[a[1]] = stoi(a[0]);
+            cout<<a[1]<<"--------"<<stoi(a[0])<<endl;
+
             // extract sub domains
             string origindomain = a[1];
             istringstream sub(a[1]);
@@ -27,20 +29,18 @@ public:
                 if(!token.empty())
                     tokens.push_back(token);
             }
-            int i=0,j=1;
-            for(;j<tokens.size();j++){
-                string sub_domain;
-                for(int k=j; k<tokens.size(); k++){
-                    if(sub_domain.size()>0)
-                        sub_domain += ".";
-                    sub_domain += tokens[k];
+            for(int j=1; j<tokens.size(); j++){
+                string sub_domain = tokens[j];
+                for(int k=j+1; k<tokens.size(); k++){
+                    sub_domain += "." + tokens[k];
                 }
                 if((it = hash_table.find(sub_domain)) != hash_table.end()){
-                    hash_table[sub_domain] += hash_table[origindomain];
+                    hash_table[sub_domain] += stoi(a[0]);
                 }
                 else
                     hash_table[sub_domain] = stoi(a[0]);
             }
+            cout<<hash_table["ca"]<<endl;
         }
         vector<string> result;
         for(auto k : hash_table){
@@ -51,7 +51,17 @@ public:
     }
 };
 int main(){
-    vector<string> cpdomains = {"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
+    vector<string> cpdomains = {
+    "654 yaw.lmm.ca" ,
+    "1501 ara.ca",
+    "1225 lmm.ca",
+    "7193 xth.fzx.ca",
+    "1789 xcf.zqy.ca",
+    "1627 bhp.ca",
+    "2913 ret.ych.ca",
+    "9219 tfm.ca",
+    "8176 ujm.gqs.ca",
+    "1873 kse.gjf.ca"};
     auto re = Solution().subdomainVisits(cpdomains);
     for(auto r: re)
         cout<<r<<endl;
