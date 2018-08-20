@@ -8,6 +8,7 @@ using namespace std;
 class Solution {
 public:
     string longestWord(vector<string>& words) {
+        sort(words.begin(), words.end());
         string longest = "";
         for(auto s: words){
             int len = s.size();
@@ -21,14 +22,9 @@ public:
                     break;
                 }
             }
-            if(flag){
-                if(longest > s && len == longest.size())
-                    longest = s;
-                if(len > longest.size())
-                    longest = s;
+            if(flag && len > longest.size()){
+                longest = s;
             }
-
-
         }          
         return longest;
     }
