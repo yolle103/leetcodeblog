@@ -5,10 +5,10 @@ using namespace std;
 class Solution {
 public:
     int projectionArea2(vector<vector<int>> & grid){
-        int maxrow = -1;
-        int maxcolomn = -1;
         int totalp = 0;
         for(int i=0; i<grid.size(); i++){
+            int maxrow = -1;
+            int maxcolomn = -1;
             for(int j=0; j<grid.size(); j++){
                 if(grid[i][j] > 0)
                     totalp += 1;
@@ -62,6 +62,6 @@ public:
     
 };  
 int main(){
-    vector<vector<int>> grid =  {{1,0},{0,2}};
+    vector<vector<int>> grid =  {{1,4},{1,1}};
     cout<<Solution().projectionArea2(grid)<<endl;
 }
