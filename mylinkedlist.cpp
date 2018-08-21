@@ -31,13 +31,15 @@ public:
             p = p->next;
         p->next = newtail;
         len++;
+        if(len == 1)
+            root = newtail;
     }
     void addAtIndex(int index, int val){
         if(index >len)
             return;
 
         // add at tail
-        if(index == len)
+        if(index == len && len>0)
             addAtTail(val);
         else if(index == 0)
             addAtHead(val);
@@ -51,13 +53,14 @@ public:
             }
             pre->next = newnode;
             newnode->next = p;
+            len++;
         }
-        len++;
+
 
 
     }
     void deleteAtIndex(int index){
-        if(index >len)
+        if(index >=len)
             return;
         LinkNode * delnode;
         LinkNode *p = root;
@@ -73,6 +76,7 @@ public:
             delnode = p;
             pre->next = p->next;
         }
+        len--;
         delete delnode;
     }
     void pprint(){
@@ -94,19 +98,35 @@ private:
 };
 int main(){
     MyLinkedList mylist;
-    mylist.addAtHead(1);
-    mylist.addAtHead(2);
-    mylist.addAtTail(3);
     cout<<mylist.get(0)<<endl;
-    cout<<mylist.get(4)<<endl;
-    mylist.addAtIndex(1, 5);
-    mylist.addAtIndex(4, 4);
+    mylist.addAtIndex(1,2);
     mylist.pprint();
-    mylist.deleteAtIndex(0);
+    cout<<mylist.get(0)<<endl;
+    cout<<"get 1"<<mylist.get(1)<<endl;
+    cout<<"ssss";
     mylist.pprint();
-    mylist.deleteAtIndex(3);
+    cout<<"sss";
+    mylist.addAtIndex(0,1);
+    cout<<mylist.get(0)<<endl;
+    cout<<mylist.get(1)<<endl;
     mylist.pprint();
-    mylist.deleteAtIndex(1);
-    mylist.pprint();
+    // cout<<mylist.get(1)<<endl;
+    // cout<<mylist.get(0)<<endl;
+    // cout<<"ssss"<<endl;
+    // cout<<mylist.get(2)<<endl;
+    // mylist.addAtHead(1);
+    // mylist.addAtHead(2);
+    // mylist.addAtTail(3);
+    // cout<<mylist.get(0)<<endl;
+    // cout<<mylist.get(4)<<endl;
+    // mylist.addAtIndex(1, 5);
+    // mylist.addAtIndex(4, 4);
+    // mylist.pprint();
+    // mylist.deleteAtIndex(0);
+    // mylist.pprint();
+    // mylist.deleteAtIndex(3);
+    // mylist.pprint();
+    // mylist.deleteAtIndex(1);
+    // mylist.pprint();
 }
 
