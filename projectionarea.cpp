@@ -8,8 +8,14 @@ public:
         return zproject(grid) + xproject(grid) + yproject(grid);
     }
     int zproject(vector<vector<int>> & grid){
-        int len = grid.size();
-        return len*len;
+        int sum = 0;
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid.size(); j++){
+                if(grid[i][j] > 0)
+                    sum += 1;
+            }
+        }
+        return sum;
     }
     int xproject(vector<vector<int>> & grid){
         int sum=0;
@@ -40,6 +46,6 @@ public:
     
 };  
 int main(){
-    vector<vector<int>> grid =  {{1,2},{3,4}};
+    vector<vector<int>> grid =  {{1,0},{0,2}};
     cout<<Solution().projectionArea(grid)<<endl;
 }
