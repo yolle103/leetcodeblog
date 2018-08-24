@@ -14,22 +14,19 @@ public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
         int start=0, end=0;
         int count = 0;
-        while(start<nums.size()){
-
-            while(product(nums, start, end)<k && end<nums.size()){
-                count++;
-                end++;
+        int pro;
+        for(;end<nums.size(); end++){
+            pro *= nums[end];
+            while(start<=end && pro >=k){
+                pro /= nums[start];
+                start++;
             }
-            if(product(nums, start, end) >=k || end == nums.size()){
-                start++; 
-                end = start;
-            }
-
+            count += (end-start+1);
         }
         return count;
     }
 };
 int main(){
-    vector<int> ts = {10, 5, 2, 6};
+    vector<int> ts = {10, 5, 2, 6, 7, 3};
     cout<<Solution().numSubarrayProductLessThanK(ts, 100);
 }
