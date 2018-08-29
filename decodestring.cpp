@@ -9,6 +9,8 @@ public:
     string decodeAtIndex(string S, int K) {
         int count = countlength(S);
         for(int i=S.size()-1; i>=0; i--){
+            if(count == 0)
+                return string(1, S[0]);
             if(K % count != 0){
                 if(isdigit(S[i])){
                     count /= (int)(S[i] - '0');
@@ -16,8 +18,12 @@ public:
                 else
                     count--;
             }
-            else
-                return string(1, S[i]);
+            else{
+                if(!isdigit(S[i]))
+                    return string(1, S[i]);
+                else
+                    count /= (int)(S[i] - '0');
+            }
         }
     }
     int countlength(string S){
