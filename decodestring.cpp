@@ -21,9 +21,11 @@ public:
             else{
                 if(!isdigit(S[i]))
                     return string(1, S[i]);
-                else
+                else{
                     count /= (int)(S[i] - '0');
+                }
             }
+            K %= count;
         }
     }
     int countlength(string S){
@@ -39,6 +41,6 @@ public:
     }
 };
 int main(){
-    string s = "leet2code3";
-    cout<<Solution().decodeAtIndex(s, 11);
+    string s = "ixm5xmgo78";
+    cout<<Solution().decodeAtIndex(s, 711);
 }
