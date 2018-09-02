@@ -14,12 +14,15 @@ public:
                 cout<<"check edge"<<i<<" "<<point<<endl;
                 // color
                 if(color[point] == -1){
-                    if(color[i] == -1)
-                        color[point] = 0;
+                    if(color[i] == -1){
+                        color[point] = 1;
+                        color[i] = 0;
+                    }
+
                     else
                         color[point] = 1 - color[i];
 
-                    cout<<"color"<<point<<"  "<<color[point]<<endl;
+                    cout<<"color "<<point<<"  "<<color[point]<<endl;
                 }
                     
                 else{
