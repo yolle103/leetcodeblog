@@ -9,28 +9,31 @@ public:
         stack<int> st;
         for(int i=0; i<num.size(); i++){
             int number = (int)(num[i] - '0');
-            if(k!=0 && !st.empty())
-                if(st.top()<number)
-                    k--; 
-                else
+            while(!st.empty() && st.top()> number && k>0){
+                    k--;
                     st.pop();
+            }
             st.push(number);
         }
         // pop out of the stack
         string result;
+        int count =0;
         while(!st.empty()){
             result = to_string(st.top()) + result;
             st.pop();
+            count++;
         }
         cout<<result<<endl;
         int ct=0;
         while(result[ct] == '0')
             ct++;
-        return result.substr(ct, result.size()-ct);
+        result = result.substr(ct, result.size()-ct);
+        
+        return result.substr(0, num.size()-k);
     }
 
 };
 int main(){
-    string s = "10200";
+    string s = "112";
     cout<<Solution().removeKdigits(s, 1);
 }
