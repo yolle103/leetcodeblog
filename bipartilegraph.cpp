@@ -13,9 +13,14 @@ public:
             for(auto point:graph[i]){
                 cout<<"check edge"<<i<<" "<<point<<endl;
                 // color
-                if(color[point] == -1)
+                if(color[point] == -1){
                     color[point] = verse(color[i]);
+                }
+                    
                 else{
+                    if(color[i] == -1)
+                        color[i] = verse(color[point]);
+
                     if(color[point] != verse(color[i]))
                         return false;
                 }
@@ -33,6 +38,7 @@ public:
 };
 int main(){
     // vector<vector<int>> graph= {{1,3}, {0,2}, {1,3}, {0,2}};
-    vector<vector<int>> graph= {{1,2,3}, {0,2}, {0,1,3}, {0,2}};
+    // vector<vector<int>> graph= {{1,2,3}, {0,2}, {0,1,3}, {0,2}};
+    vector<vector<int>> graph= {{4},{},{4},{4},{0,2,3}};
     cout<<Solution().isBipartite(graph)<<endl;
 }
