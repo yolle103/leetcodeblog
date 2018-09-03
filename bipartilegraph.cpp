@@ -4,36 +4,27 @@
 using namespace std;
 class Solution {
 public:
+    bool DFS(vector<vector<int>> &graph, int start, int color, vector<int> &colorvector){
+        if(colorvector[start] != -1)
+            return colorvector[start] == color;
+        colorvector[start] = color;
+        cout<<"print "<<start<<" color "<<color<<endl;
+        for(auto k : graph[start]){
+            cout<<"check edge "<<start<<"  "<<k<<endl;
+            if(!DFS(graph, k, 1-colorvector[start], colorvector))
+                return false;
+        }
+        return true;
+    }
     bool isBipartite(vector<vector<int>>& graph) {
         int graph_size = graph.size();
         vector<int> color(graph_size, -1);
-        color[0] = 0;
-        for(int i=0; i<graph_size; i++){
-             
-            for(auto point:graph[i]){
-                cout<<"check edge"<<i<<" "<<point<<endl;
-                // color
-                if(color[point] == -1){
-                    if(color[i] == -1){
-                        color[point] = 1;
-                        color[i] = 0;
-                    }
-
-                    else
-                        color[point] = 1 - color[i];
-
-                    cout<<"color "<<point<<"  "<<color[point]<<endl;
-                }
-                    
-                else{
-                    if(color[i] == -1)
-                        color[i] = 1 - color[point];
-
-                    if(color[point] != 1 - color[i])
-                        return false;
-                }
+        for(int i=0; i< graph_size; i++){
+            if(color[i] == -1){
+                cout<<"check "<<i<<endl;
+                if(!DFS(graph, i, 0, color))
+                    return false;
             }
-
         }
         return true;
     }
